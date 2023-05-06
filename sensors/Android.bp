@@ -13,20 +13,42 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+soong_config_module_type {
+    name: "nashc_sensors_hal_cc_defaults",
+    module_type: "cc_defaults",
+    config_namespace: "NASHC_SENSORS",
+    value_variables: ["ALS_POS_X", "ALS_POS_Y"],
+    properties: ["cppflags"],
+}
+
+nashc_sensors_hal_cc_defaults {
+    name: "nashc_sensors_hal_defaults",
+    soong_config_variables: {
+        ALS_POS_X: {
+            cppflags: ["-DALS_POS_X=%s"],
+        },
+        ALS_POS_Y: {
+            cppflags: ["-DALS_POS_Y=%s"],
+        },
+    },
+}
+
 cc_binary {
-    name: "android.hardware.sensors@2.0-service-multihal.nashc",
+    name: "android.hardware.sensors@2.0-service.nashc",
+    stem: "android.hardware.sensors@2.0-service.multihal",
     defaults: [
         "hidl_defaults",
     ],
     vendor: true,
     relative_install_path: "hw",
     srcs: [
+        "AlsCorrection.cpp",
         "HalProxy.cpp",
         "HalProxyCallback.cpp",
         "service.cpp",
     ],
-    init_rc: ["android.hardware.sensors@2.0-service-multihal.nashc.rc"],
-    vintf_fragments: ["android.hardware.sensors@2.0-multihal.nashc.xml"],
+    init_rc: ["android.hardware.sensors@2.0-service-multihal.rc"],
+    vintf_fragments: ["android.hardware.sensors@2.0-multihal.xml"],
     header_libs: [
         "android.hardware.sensors@2.X-multihal.header",
         "android.hardware.sensors@2.X-shared-utils",
@@ -45,5 +67,35 @@ cc_binary {
     ],
     static_libs: [
         "android.hardware.sensors@1.0-convert",
+    ],
+    local_include_dirs: [
+        "include",
+    ],
+}
+
+cc_binary {
+    name: "als_correction_service.nashc",
+    stem: "als_correction_service",
+    init_rc: ["als_correction_service.rc"],
+    defaults: [
+        "nashc_sensors_hal_defaults",
+    ],
+    system_ext_specific: true,
+    srcs: [
+        "als_correction_service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libgui",
+        "libui",
+        "libutils",
+        "liblog",
+    ],
+    cflags: [
+        "-DNO_INPUT",
+    ],
+    local_include_dirs: [
+        "include",
     ],
 }
