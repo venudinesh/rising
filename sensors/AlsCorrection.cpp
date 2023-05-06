@@ -45,7 +45,7 @@ void AlsCorrection::init() {
     blue_max_lux = 1337;
     white_max_lux = 682;
     als_bias = 0;
-    max_brightness = get("/sys/class/backlight/panel0-backlight/max_brightness", 255);
+    max_brightness = get("/sys/class/leds/lcd-backlight/max_brightness", 255);
     ALOGV("max r = %d, max g = %d, max b = %d", red_max_lux, green_max_lux, blue_max_lux);
 }
 
@@ -60,7 +60,7 @@ void AlsCorrection::correct(float& light) {
     int b = property_get_int32("vendor.sensors.als_correction.b", 0);
     ALOGV("Screen Color Above Sensor: %d, %d, %d", r, g, b);
     ALOGV("Original reading: %f", light);
-    int screen_brightness = get("/sys/class/backlight/panel0-backlight/brightness", 0);
+    int screen_brightness = get("/sys/class/leds/lcd-backlight/brightness", 0);
     float correction = 0.0f, correction_scaled = 0.0f;
     if (red_max_lux > 0 && green_max_lux > 0 && blue_max_lux > 0 && white_max_lux > 0) {
         constexpr float rgb_scale = 0x7FFFFFFF;
