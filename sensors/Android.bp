@@ -34,8 +34,7 @@ nashc_sensors_hal_cc_defaults {
 }
 
 cc_binary {
-    name: "android.hardware.sensors@2.0-service.nashc",
-    stem: "android.hardware.sensors@2.0-service.multihal",
+    name: "android.hardware.sensors@2.0-service-multihal.nashc",
     defaults: [
         "hidl_defaults",
     ],
@@ -47,8 +46,8 @@ cc_binary {
         "HalProxyCallback.cpp",
         "service.cpp",
     ],
-    init_rc: ["android.hardware.sensors@2.0-service-multihal.rc"],
-    vintf_fragments: ["android.hardware.sensors@2.0-multihal.xml"],
+    init_rc: ["android.hardware.sensors@2.0-service-multihal.nashc.rc"],
+    vintf_fragments: ["android.hardware.sensors@2.0-multihal.nashc.xml"],
     header_libs: [
         "android.hardware.sensors@2.X-multihal.header",
         "android.hardware.sensors@2.X-shared-utils",

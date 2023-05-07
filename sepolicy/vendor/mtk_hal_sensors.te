@@ -13,3 +13,9 @@ allow mtk_hal_sensors vendor_proc_oplus_sensor_cali:file rw_file_perms;
 allow mtk_hal_sensors oplus_block_device:blk_file r_file_perms;
 allow mtk_hal_sensors block_device:dir search;
 allow mtk_hal_sensors persist_data_file:dir search;
+
+allow mtk_hal_sensors als_correction_service:process signal;
+
+r_dir_file(mtk_hal_sensors, sysfs_leds)
+
+get_prop(mtk_hal_sensors, vendor_sensors_als_prop)
