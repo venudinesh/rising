@@ -96,8 +96,10 @@ PRODUCT_PACKAGES += \
     libcamera_metadata_shim
 
 # Doze
+# OPlusExtras / OplusDoze
 PRODUCT_PACKAGES += \
     OplusDoze
+    OPlusExtras
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -344,7 +346,7 @@ PRODUCT_PACKAGES += \
 # RenderScript
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
-
+	
 # Rootdir
 PRODUCT_PACKAGES += \
     fstab.mt6785 \
