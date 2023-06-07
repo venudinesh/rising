@@ -81,13 +81,13 @@
     </string-array>
 
     <!-- The scale factor for framework dimming -->
-    <integer name="config_udfpsDimmingBrightnessMin">649</integer>
-    <integer name="config_udfpsDimmingBrightnessMax">2047</integer>
+    <integer name="config_udfpsDimmingBrightnessMin">0</integer>
+    <integer name="config_udfpsDimmingBrightnessMax">255</integer>
 
     <!-- The amount of delay to add when disabling the dimming.
          This is used to prevent flickers due to the dimming being disabled
          before the screen has had chance to switch out of HBM mode -->
-     <integer name="config_udfpsDimmingDisableDelay">10</integer>
+     <integer name="config_udfpsDimmingDisableDelay">15</integer>
 	 
 	     <!-- Udfps animation size-->
     <dimen name="udfps_animation_size">205dp</dimen>
